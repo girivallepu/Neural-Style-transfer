@@ -5,18 +5,18 @@ Neural Style Transfer is an algorithm that given a content image C and a style i
 #### A few examples
 -------------------
 * The beautiful ruins of the ancient city of Persepolis (Iran) with the style of Van Gogh (The Starry Night) 
-  <img src="https://raw.githubusercontent.com/tejaslodaya/neural-style-transfer/master/nb_images/perspolis_vangogh.png">
+  <img src="https://raw.githubusercontent.com/Giridharvallepu/Neural-Style-transfer/master/nb_images/perspolis_vangogh.png">
 * The tomb of Cyrus the great in Pasargadae with the style of a Ceramic Kashi from Ispahan 
-  <img src="https://raw.githubusercontent.com/tejaslodaya/neural-style-transfer/master/nb_images/pasargad_kashi.png">
+  <img src="https://raw.githubusercontent.com/Giridharvallepu/Neural-Style-transfer/master/nb_images/pasargad_kashi.png">
 * A scientific study of a turbulent fluid with the style of a abstract blue fluid painting
-  <img src = "https://raw.githubusercontent.com/tejaslodaya/neural-style-transfer/master/nb_images/circle_abstract.png">
+  <img src = "https://raw.githubusercontent.com/Giridharvallepu/Neural-Style-transfer/master/nb_images/circle_abstract.png">
 
 
 #### Transfer Learning
 ----------------------
 Neural Style Transfer (NST) uses a previously trained convolutional network, and builds on top of that. The idea of using a network trained on a different task and applying it to a new task is called transfer learning. 
 
-<img src = "https://raw.githubusercontent.com/tejaslodaya/neural-style-transfer/master/nb_images/vgg19.jpg">
+<img src = "https://raw.githubusercontent.com/Giridharvallepu/Neural-Style-transfer/master/nb_images/vgg19.jpg">
 
 Following the original [NST paper](https://arxiv.org/abs/1508.06576), I have used the VGG network. Specifically, VGG-19, a 19-layer version of the VGG network. This model has already been trained on the very large ImageNet database, and thus has learned to recognize a variety of low level features (at the earlier layers) and high level features (at the deeper layers)
 
@@ -27,7 +27,7 @@ Most of the algorithms optimize a cost function to get a set of parameter values
 
     "Generated" image G should have similar content as the input image C. The most visually pleasing results will be generated if a layer is chosen in the middle of the network--neither too shallow nor too deep. Set the image C as the input to the pretrained VGG network, and run forward propagation. a(C) be the hidden layer activation in the layer you had chosen. Set G as the input, and run forward propagation. a(G) be the corresponding hidden layer activation. The cost function will be:
     
-    <img src = "https://raw.githubusercontent.com/tejaslodaya/neural-style-transfer/master/nb_images/equation1.png">
+    <img src = "https://raw.githubusercontent.com/Giridharvallepu/Neural-Style-transfer/master/nb_images/equation1.png">
     
     When minimizing the content cost later, it helps make sure G has similar content as C
     
@@ -35,13 +35,13 @@ Most of the algorithms optimize a cost function to get a set of parameter values
 
     Gram matrix (or style matrix) which serves as the basic building block of style cost function computes the correlation between filters. This matrix is of dimensions (nC,nC) where nC is the number of filters. The value G(i,j) measures how similar the activation of filter i are to the activation of filter j. The Style matrix G measures the style of an image. After generating the Style matrix (Gram matrix), goal is to minimize the distance between the Gram matrix of the "style" image S and that of the "generated" image G
     
-    <img src = "https://raw.githubusercontent.com/tejaslodaya/neural-style-transfer/master/nb_images/equation2.png">
+    <img src = "https://raw.githubusercontent.com/Giridharvallepu/Neural-Style-transfer/master/nb_images/equation2.png">
     
     where G(S) and G(G) are respectively the Gram matrices of the "style" image and the "generated" image, computed using the hidden layer activations for a particular hidden layer in the network.
     
     Better results are obtained when style costs from several different layers are merged. This is in contrast to the content representation, where usually using just a single hidden layer is sufficient. λ[l] is the weights given to different layers
     
-    <img src = "https://raw.githubusercontent.com/tejaslodaya/neural-style-transfer/master/nb_images/equation3.png">
+    <img src = "https://raw.githubusercontent.com/Giridharvallepu/Neural-Style-transfer/master/nb_images/equation3.png">
 
     Minimizing the style cost will cause the image G to follow the style of the image S
 
@@ -49,7 +49,7 @@ Most of the algorithms optimize a cost function to get a set of parameter values
 
     Cost function that minimizes both the style and the content cost
     
-    <img src = "https://raw.githubusercontent.com/tejaslodaya/neural-style-transfer/master/nb_images/equation4.png">
+    <img src = "https://raw.githubusercontent.com/Giridharvallepu/Neural-Style-transfer/master/nb_images/equation4.png">
     
     The total cost is a linear combination of the content cost and the style cost. α and β are hyperparameters that control the relative weighting between content and style
     
